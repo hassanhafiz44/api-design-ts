@@ -11,8 +11,17 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid())
-  createdAt DateTime @default(now())
-  username String @unique
-  password String
+  id        String    @id @default(uuid()) @db.Uuid
+  createdAt DateTime  @default(now())
+  username  String    @unique @db.VarChar(255)
+  password  String    @db.VarChar(255)
+  products  Product[]
+}
+
+model Product {
+  id          String   @id @default(uuid()) @db.Uuid
+  createdAt   DateTime @default(now())
+  name        String   @db.VarChar(255)
+  belongsToId String   @db.Uuid
+  belongsTo   User     @relation(fields: [belongsToId], references: [id])
 }
