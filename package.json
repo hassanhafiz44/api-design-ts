@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/hassanhafiz44/api-design-ts/issues"
   },
-  "homepage": "https://github.com/hassanhafiz44/api-design-ts#readme"
+  "homepage": "https://github.com/hassanhafiz44/api-design-ts#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
