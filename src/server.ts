@@ -10,7 +10,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
   req.shhhh_secret = "doggy";
-  next();
+  res.status(401);
+  res.send("Nope");
 });
 
 app.get("/", (_req: Request, res: Response) => {
