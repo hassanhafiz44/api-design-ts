@@ -2,6 +2,7 @@ import express, { NextFunction, Request, Response } from "express";
 import morgan from "morgan";
 import cors from "cors";
 import router from "./router";
+import { protect } from "./modules/auth";
 
 
 const app = express();
@@ -24,6 +25,6 @@ app.get("/", (_req: Request, res: Response) => {
   res.json({ message: "hello" });
 });
 
-app.use("/api", router);
+app.use("/api", protect, router);
 
 export default app;
