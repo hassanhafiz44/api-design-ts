@@ -6,6 +6,7 @@
       "ESNext"
     ],
     "esModuleInterop": true,
-    "sourceRoot": "./src"
+    "sourceRoot": "./src",
+    "strict": true
   }
 }

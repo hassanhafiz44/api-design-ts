@@ -1,17 +1,29 @@
-import { Router } from "express";
+import { Request, Response, Router } from "express";
 
 const router = Router();
 
 /**
  * Product routes
  */
-router.get("/product", (req, res) => {
+router.get("/product", (_req: Request, res: Response) => {
   res.json({ message: "hello" });
 });
-router.get("/product/:id", () => {});
-router.put("/product/:id", () => {});
-router.delete("/product/:id", () => {});
-router.post("/product", () => {});
+router.get("/product/:id", (req: Request, res: Response) => {
+  const { id } = req.params;
+  res.json({ message: `product with ${id}` });
+});
+router.put("/product/:id", (req: Request, res: Response) => {
+  const { id } = req.params;
+  res.json({ message: `product with ${id}` });
+});
+router.delete("/product/:id", (req: Request, res: Response) => {
+  const { id } = req.params;
+  res.json({ message: `product with ${id}` });
+});
+router.post("/product", (req: Request, res: Response) => {
+  const { body } = req;
+  res.json({ data: body });
+});
 
 /**
  * Update routes
