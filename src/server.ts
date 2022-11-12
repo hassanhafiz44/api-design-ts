@@ -10,7 +10,6 @@ const app = express();
 
 const customLogger =
   (message: string) => (req: Request, res: Response, next: NextFunction) => {
-    console.log(`Hello from ${message}`);
     next();
   };
 

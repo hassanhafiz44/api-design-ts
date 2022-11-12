@@ -1,5 +1,12 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
 import { body } from "express-validator";
+import {
+  createProduct,
+  deleteProduct,
+  getOneProduct,
+  getProducts,
+  updateProduct,
+} from "./handlers/product";
 import { handleInputErrors } from "./modules/middlewares";
 
 const router = Router();
@@ -7,34 +14,20 @@ const router = Router();
 /**
  * Product routes
  */
-router.get("/product", (_req: Request, res: Response) => {
-  res.json({ message: "hello" });
-});
-router.get("/product/:id", (req: Request, res: Response) => {
-  const { id } = req.params;
-  res.json({ message: `product with ${id}` });
-});
+router.get("/product", getProducts);
+router.get("/product/:id", getOneProduct);
 router.put(
   "/product/:id",
   body("name").isString(),
   handleInputErrors,
-  (req: Request, res: Response) => {
-    const { id } = req.params;
-    res.json({ message: `product with ${id}` });
-  }
+  updateProduct
 );
-router.delete("/product/:id", (req: Request, res: Response) => {
-  const { id } = req.params;
-  res.json({ message: `product with ${id}` });
-});
+router.delete("/product/:id", deleteProduct);
 router.post(
   "/product",
   body("name").isString(),
   handleInputErrors,
-  (req: Request, res: Response) => {
-    const { body } = req;
-    res.json({ data: body });
-  }
+  createProduct
 );
 
 /**
