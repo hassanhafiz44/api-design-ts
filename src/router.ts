@@ -7,6 +7,7 @@ import {
   getProducts,
   updateProduct,
 } from "./handlers/product";
+import { getUpdates } from "./handlers/update";
 import { handleInputErrors } from "./modules/middlewares";
 
 const router = Router();
@@ -33,7 +34,7 @@ router.post(
 /**
  * Update routes
  */
-router.get("/update", () => {});
+router.get("/update", getUpdates);
 router.get("/update/:id", () => {});
 router.put(
   "/update/:id",
