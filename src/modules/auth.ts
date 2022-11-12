@@ -29,7 +29,9 @@ export const protect = (req: Request, res: Response, next: NextFunction) => {
   }
 
   try {
-    const user = jwt.verify(token, process.env.JWT_SECRET);
+    const user = <jwt.UserIdJWTPayload>(
+      jwt.verify(token, process.env.JWT_SECRET)
+    );
     req.user = user;
     next();
   } catch (e) {
