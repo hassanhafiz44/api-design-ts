@@ -7,7 +7,7 @@ import {
   getProducts,
   updateProduct,
 } from "./handlers/product";
-import { getUpdates } from "./handlers/update";
+import { createUpdate, getUpdates, updateUpdate } from "./handlers/update";
 import { handleInputErrors } from "./modules/middlewares";
 
 const router = Router();
@@ -40,16 +40,17 @@ router.put(
   "/update/:id",
   body("title").optional(),
   body("body").optional(),
-  body("status").isIn(["IN_PROGRESS", "SHIPPED", "DEPRECATED"]),
+  body("status").isIn(["IN_PROGRESS", "SHIPPED", "DEPRECATED"]).optional(),
   body("version").optional(),
-  () => {}
+  updateUpdate
 );
 router.delete("/update/:id", () => {});
 router.post(
   "/update",
   body("title").isString().notEmpty().exists(),
   body("body").exists().isString().notEmpty(),
-  () => {}
+  body("productId").exists().isString(),
+  createUpdate
 );
 
 /**
